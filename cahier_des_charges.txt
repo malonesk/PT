@@ -1,0 +1,236 @@
+* Recherche et implémentation d'une API java gérant un traitement de texte
+    - copier/coller*
+    - select all*
+    - indenter
+    - police (taille)
+    - sauvegarder
+    - gestion de la syntaxe code (couleur) // existe déjà
+    - synthese d'un cours suivant des balises <important> et avec les titres (plan)
+    - sommaire (plan) avec lien cliquable (a gauche) sur le fichier en cours
+
+* Création d'une NOUVELLE FENETRE redimmensionnable et minimisable affichant l'emploi du temps récupéré sur un serveur
+    - Acces:  menu / fonctionnalités/ edt
+            - si premier acces : pop up renseignement classe : entrer des infos de l'etu pour afficher son edt
+
+     /* creer un menu pour editer le profil personnel (toutes les infos) */
+
+    - A partir du samedi MIDI : afficher l'edt de la semaine SUIVANTE
+    - soit sur le serveur de l'IUT, soit sur un serveur créé par nos soins*
+            - recuperation sur ADE : possible?
+        - sinon : reprendre idée du widget
+    - Affichage en fonction du groupe/de l'année d'étude
+    (- IDEE : recupérer l'edt en markdown)
+    - Alertes : pop up quand une modification a été effectuée sur le serveur
+    - Creation d'un objet EDT (tableaux)
+
+* Création d'une vue affichant les ressources (PDF) de cours-info dans l'application
+    - Canevas de la table : Matière Date Objet Ressources (liste des ressources)
+            - en cliquant sur ressources : ouverture de la ressource sur cours-info
+    - Alertes : pop up quand un pdf ultérieurement telecharger a été modifié sur le serveur
+        - script shell ? (ls recursif)
+    - Alertes : pop up quand un nouveau pdf a été ajouté sur cours-info
+        - utilisateur ayant accès au bdd joomla (articles) en lecture
+    - IDEE : selection des types d'alertes que l'on veut
+
+* Gestion de fichiers et de répertoires
+    - Création/modification de fichiers et dossiers*
+    - Vue affichant l'arborescence du répertoire de travail
+    - dans le cas ou l'on clique sur un fichier dans l'arborescence :
+        ouverture d'une vue "traitement de texte" qui ouvre le fichier cliqué
+
+(* Chat
+    - serveur chat global
+    - chat groupe collabo
+    - chat privé
+)
+
+(((  ** Envoi de fichier sur session IUT (ssh)  )))
+
+*** mise en commun des ressources (stockées sur serveur) avec authentification
+    - droits d'accès suivant les personnes
+    - auth via serveur CAS université
+    - gestion des groupes d'etu (travail collaboratif)
+
+    Depuis notre appli :
+    - bouton save online / save local
+        - creer un groupe de travail (dossier + nom(mail) + generation d'un mdp) (comme aller sur nfs1 et creer un nouveau dossier)
+            - a l'authentification : serveur renoive tout les groupes dont on est chef, dans lesquels on a été invité
+            - a la creation du dossier : definir si compte invité (lecture) autorisé ou non
+            - connection au groupe avec (login, mdp privé) -> ajout du couple ds la bdd
+                                                         -> definition des droits pour chaque u par le chef
+                                                         -> acces en lecture/ecriture/creation suivant les droits
+            - invitation avec confirmation ou non
+        - vue recherche de dossier (avec ou sans mdp) -> demande d'acces aux dossiers
+        - vue "split" : gauche : dossier perso (arbo ordi)
+                        droite : dossier collabo (arbo serveur)
+
+        - proprietaire : invite les autres avec des droits
+
+        - travail en ligne avec verrou si un utilisateur travail sur le fichier (bool verrouillé (bdd))
+
+
+
+Attentes : listes les fonctionnalités
+    - fonctionnalités traitement de texte
+    - système d'alerte synchronisation edt, cours-info
+    - aspect collaboratif
+
+-> faire une premier tri des fonctionnalités (1 semaine)// puis decouper en taches
+-> maquette visuelle (2-3)
+-> scénario d'utilisation des fonctionnalités (2-3)
+-> à finir pour après les vacances
+
+- compte rendu des réunions et attentes à faire
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+        Bilan 19/10/16
+- Choix de la bibliotheque graphique SWING
+- Recherche d'API de traitement de texte
+        - Résulats: .programme complet ekit (java) http://www.hexidec.com/ekit.php
+                    .classe SimpleEditor (facilité d'implémentation)
+                    .bibliothèques SWING (JTextPane...)
+
+- Recherche d'idées pour l'accès à des serveurs dans le but de récupèrer des données
+    .récupéré données en Markdown (facilité de parse)
+    .HttpURLConnection
+        http://www.fobec.com/java/1125/telecharger-fichier-depuis-une-url.html
+        https://docs.oracle.com/javase/7/docs/api/java/net/HttpURLConnection.html
+    .http://codes-sources.commentcamarche.net/source/34185-telecharger-un-fichier-a-partir-d-une-url
+
+- Envoi de fichier sur session IUT
+    .connexion ssh2 via la bibliotheque JAVA Jsch (Java Secure Channel) http://www.jcraft.com/jsch/
+        scpTo : http://www.jcraft.com/jsch/examples/ScpTo.java.html
+        scpFrom : http://www.jcraft.com/jsch/examples/ScpFrom.java.html
+    .IDEE: Création d'une vue login (iut), selection des fichiers a envoyer, envoie via ssh sur session IUT
+
+
+
+//// a faire
+
+- enregistrer ouvrir open documents (biblio java)
+       - resistance de libreoffice par rapport au "rajout" de balises <important> ???
+       - sinon utiliser des balises existantes
+
+- alanyse traitement données xml (déjà dans java)
+
+- se familiariser avec ekit (extends JFrame -> extends JPanel)
+
+- définir le "modèle UML", etat des lieux des differentes classes pour le visuel
+- au niveau du modèle
+    - il nous faut un model objet du modele
+    - ex : le txt qu'on tape : comment est - il sauvegarder dans les données
+- client / serveur :
+    - listing de toutes les données dont on va avoir besoin (ex: cette info va du client vers le serveur, que retourne le serveur)
+    - decrire fonctionnellement la discution entre le serveur et l'appli
+    - question/reponses -> objet retourné ? (plus tard)
+
+- trouver API synthaxe code (coloration)  JSYNTAXPANE
+- verifier spellchecker
+
+
+
+
+(- Alertes environnement (edt, calendrier))
+
+-une classe reprensentant le texte que l'on tape
+- une classe EDT
+- une classe alerte
+- pour login : classe "paramètres de l'app"
+- sommaire, resumer, arborescence
+
+cote serveur:
+JBDC ?
+base de données
+sauvergarder les alertes dans la bdd?
+tables : utilisateur droits dossier...
+- droit :
+
+
+
+Dans le visuel : isoler ce qui est configurable (ex : types d'alertes a afficher) -> attributs puvant etre dans le model
+API java : a partir d'un fichier .ics, generer un calendrier A TROUVER
+OU transformer ics en objet (serveur)
+
+A part calendrier, client/serv envoie/recoit DES OBJETS
+
+Travail co :
+au lieu de groupe, on raisonne en "projet collaboratif" :
+    on creer un dossier projet
+    on creer les droits
+
+Semaine pro :
+revoir Model
+    model objet de calendrier correspondant au besoins
+    model objet des données traitée
+    model "au niveau visuel" (variables configurables)
+
+Regarder QT (generation de fichier de confifuration) (biblio)
+
+Ekit
+    - envoyer l'archive
+    - regarder ou est stocker le txt que l'on tape
+
+Model relationnel serveur (bdd)
+- gestion de projets, utilisateurs, droits
+- alertes
+Au niveau droits d'acces: penser a une historisation des fichiers (derniere modif de qui)
+
+EkitCore: jtpMain (JTextPane)
+
+
+
+
+
+
+
+iCalj4 => TROUVER une API pour AFFICHER le calendar
+Sauvergarde au format odt : impossible?
+
+
+- hypothese : utilisation d'ekit -> légère surcouche de java pour gerer editin de texte
+JtextPane associé à JEditorKit
+->JTextePane délègue au kit d'edition la comprehension et le stockage de balises par ex
+-> Ekit surcouche au JtextPane et HtmlEditorKit, puis construit le visuel
+DONC :
+Moyen grâce à ekit de faire de l'edition
+Sauvergarde au format html (htmlDocument)
+Ruse : bidouiller ekit -> ajouter un onblet dans formatter (mettre en important) (actionPerformed())
+Ainsi, creer les bonnes balises pou
+DANS html editorKit, trouver methode qui ajoute les balises dans le fichier html
+HtmlEditorKit à comprendre : mettre des balises etc.
+FLOU:dans quelle mesure le JTP va etre capable de rendre le visuel les elements ajouter
+- div avec classe important : (css) verifier si en Java 7 et 8, htmlEditorKit comprend html5?
+-> arrivé a integerer et comprendre css pour faire un rendu
+
+
+Au lieu de creer balise <important>, il suffit de creer un style graphique
+=> ensemble de balises qui permettent de rendre un texte 'important'
+ex : un div class='important'
+
+// A VERIFIER :
+API transformation html -> odt, odt ->html
+
+
+Authentification CAS :
+MD5, SHA, SHA5, qu'est-ce qu'utilise CAS?
+
+
+Alerte :
+table : rajouter categorieAlerte (calendrier, projet...)
+
+Calendar :
+Nouvelle piste : API java développement pour ADE
+-> pour aller faire des requetes sur ADE
+-> 
+
+
+htmlEdiyorKit ->supporte 3.2
+JtextPane -> supporte 3.2
+htmlEditorKit : setStyleSheet() charge un css
+
+odt ->html =
+aspose
+
