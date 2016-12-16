@@ -234,3 +234,54 @@ htmlEditorKit : setStyleSheet() charge un css
 odt ->html =
 aspose
 
+
+Objectif s3 :
+tout sauf serveur
+Editeur :
+interface de texte principale (+ panneau d'edition)
+integration dans l'appli cliente
+fonctionnalité basique : lecture et enregsitrement d'un fichier html dans l'arborescence personnelle liée a lapplication
+Essayer : obligé l'editeur a enregistrer dans le repertoire de travail de l'utilisateur
+Pour tout ceux qui sont dans l'arbo liée a l'application : widget (petit composant graphique) de l'arbo a faire (api)
+arbo avec + - deja existante (mais on peut essayer de le faire tout seul si on veut)
+Points importants (résumé), décider de qu'est ce qui dans le html va faire office de balise important
++ Construire le résumé -> peut etre fait de facon independante à l'editeur
+le faire sur un arbre xml annexe et essayer de sortir un resume sur un fichier txt
+SE RENSEIGNER SUR XML PLUS PRECISEMENT
+faire appel au methode d'html editor kit parcourir arbre, pour recup une balise (xml?)
+Quelle classe de l'api sont utilisées par ekit pour faire le rendu d'un fichier html ?
+
+4. concerne serveur
+je prends .ics, je recupere un objet, on doit trouver un moyen de faire un widget d'affichage de cet objet
+idee : afficher semaine par semaine
+une fois qu'on a collection Calendar, trier ces calendar par semaine, obtenir une sou collection qui contient que ceux de la semaine
+PUIS arriver a avoir une representation graphique
+Autre critere de tri : semaine, groupe (collection d'identifiant de groupe)
+Affichage :
+conseil : quadrillage, pavé representant les h de cours
+Essayer de dessiner le calendrier -> san gridlayout etc
+heriter de JPanel et redéfinir sa methode paintComponent
+traduire jour/heure en position pixel
+setter du jPanel pour appeler une collection calendar -> puis update
+Fonction qui lit le fichier ics (ical4j)
+Fonction qui tri l'objet calendar et fct du roup et de la semaine
+Classe : paintcomponent a redefinir, definir la grille de base, parcourir calendar, pour chacun definir ou il doit se placer
+
+5. Faire des transparents pour la soutenance
+2 3 transperent presentation sujet, enjeu
+2 3 trans sur fonctionnalitéés basique
+2 3 scenario d'utilisation (maquette visuelle)
+charte graphique
+Tout ce qui est AVANT la mise en oeuvre (plus d'un tier de slide)
+
+Calendrier : boutons semain d'avant/apres
+
+5 BIS :
+points importants : si on arrive a relier ekit et la creation de resumé c'est cool
+Bouton 'refresh' pour faire le résumé
+
+Se concentrer sur comprendre HtmlEditorKit
+
+
+
+
