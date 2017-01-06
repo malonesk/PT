@@ -278,6 +278,21 @@ public class EdtDisplayer extends JFrame{
             ed2.setVisible(true);
     }
 
+    /*
+    public void actualise() {
+        this.removeAll();
+        icsp = new IcsParser("ADECal.ics", currentWeek);
+        icsp.initWeekComponent(currentWeek);
+        List<Component> lc = icsp.getWeekComponent();
+        setListeCours(lc);
+        init(currentWeek);
+        this.setVisible(false);
+        SwingUtilities.updateComponentTreeUI(this);
+        this.setContentPane(this.getContentPane());
+        this.setVisible(true);
+
+    }*/
+
     public int[] computePositionXY(Case c) {
         int[] pos = new int[3];
         int width=200;

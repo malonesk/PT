@@ -284,4 +284,12 @@ Se concentrer sur comprendre HtmlEditorKit
 
 
 
+ESSAYER :
+InternalFrame http://docs.oracle.com/javase/tutorial/uiswing/components/internalframe.html // pour anto
+
+//Pour ceux qui font le resume
+http://www.mkyong.com/java/jsoup-html-parser-hello-world-examples/
+http://htmlparser.sourceforge.net/javadoc/doc-files/using.html
+http://jtidy.sourceforge.net/howto.html
+
 
