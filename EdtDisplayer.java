@@ -15,7 +15,9 @@ import java.util.List;
 public class EdtDisplayer extends JFrame{
     public DateRange currentWeek;
     public Graphics g;
+    public Graphics h;
     public JPanel gridEdt;
+    public JPanel bottomLines;
     public ArrayList<Case> listeCours;
     public ArrayList<JPanel> listePanelCours;
     public IcsParser icsp;
@@ -48,6 +50,7 @@ public class EdtDisplayer extends JFrame{
         //icsp.sortComponentByDate();
         icsp.initWeekComponent(currentWeek);
         lc=icsp.getWeekComponent();
+        icsp.sortComponentByDate();
         System.out.println(lc.toString());
         /**/
         if (setListeCours(lc)<0) System.out.println("taille listeCours 0");
@@ -57,7 +60,7 @@ public class EdtDisplayer extends JFrame{
         this.setTitle("Semaine du "+deb+" au "+fin);
 
         //this.setSize(798,831);
-        this.setSize(1200,1050); //Case : 150x100
+        this.setSize(1320,1050); //Case : 150x100
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +69,7 @@ public class EdtDisplayer extends JFrame{
         //((EdtFactory)gridEdt).setPanel(icsp.buildCase(lc.get(0)));
         //System.out.println(icsp.buildCase(lc.get(0)).matiere);
         gridEdt.paintComponents(g);
+
 
 
         this.setLayout(null);
@@ -98,16 +102,21 @@ public class EdtDisplayer extends JFrame{
 */
 
         Insets insets = this.getInsets();
-        gridEdt.setBounds(insets.left,insets.top,1200,1000);
+        nommerAxes(insets);
+        gridEdt.setBounds(insets.left+50,insets.top+20,1200,1000);
         this.add(gridEdt);
-        for (Component c : lc) {
-            Case ca = new Case(c);
+        for (int i=0;i<lc.size();i++) {
+            Case ca = new Case(lc.get(i));
             JPanel jp;
             jp = ca.buildComponent();
             int[] tab = computePositionXY(ca);
             if (tab[0]<0) tab[0]=0;
-            jp.setBounds(tab[0],tab[1],200, tab[2]);
-            jp.setBackground(Color.WHITE);
+            jp.setBounds(tab[0]+50,tab[1]+20,200, tab[2]);
+            Color col = new Color(102,255,255);
+            jp.setBackground(new Color(194,227,239) );
+            //Haut
+            jp.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+
             System.out.println(tab[0]+" "+tab[1]+" "+tab[2]+" "+ca.datedeb);
             this.add(jp);
         }
@@ -146,8 +155,9 @@ public class EdtDisplayer extends JFrame{
         this.add(nextW);
         this.add(prevW);
         this.getContentPane().add(gridEdt);
-        this.getContentPane().add(nextW);
-        this.getContentPane().add(prevW);
+
+        //this.getContentPane().add(nextW);
+        ///this.getContentPane().add(prevW);
 
 
 
@@ -163,6 +173,94 @@ public class EdtDisplayer extends JFrame{
         SwingUtilities.updateComponentTreeUI(this);
         this.setVisible(true);
        // this.getContentPane().add(listeCours.get(0));
+    }
+
+    public void nommerAxes(Insets ins) {
+
+        for (int i = 0; i < 6; i++) {
+            switch (i) {
+                case 0:
+                    nommageAxesJoursFactory("Lundi", i, ins);
+                    break;
+                case 1:
+                    nommageAxesJoursFactory("Mardi", i, ins);
+                    break;
+                case 2:
+                    nommageAxesJoursFactory("Mercredi", i, ins);
+                    break;
+                case 3:
+                    nommageAxesJoursFactory("Jeudi", i, ins);
+                    break;
+                case 4:
+                    nommageAxesJoursFactory("Vendredi", i, ins);
+                    break;
+                case 5:
+                    nommageAxesJoursFactory("Samedi", i, ins);
+                    break;
+
+            }
+        }
+
+        for (int j=0; j<11;j++) {
+            switch(j) {
+                case 0:
+                    nommageAxesHeuresFactory("08:00", j, ins);
+                    break;
+                case 1:
+                    nommageAxesHeuresFactory("09:00", j, ins);
+                    break;
+                case 2:
+                    nommageAxesHeuresFactory("10:00", j, ins);
+                    break;
+                case 3:
+                    nommageAxesHeuresFactory("11:00", j, ins);
+                    break;
+                case 4:
+                    nommageAxesHeuresFactory("12:00", j, ins);
+                    break;
+                case 5:
+                    nommageAxesHeuresFactory("13:00", j, ins);
+                    break;
+                case 6:
+                    nommageAxesHeuresFactory("14:00", j, ins);
+                    break;
+                case 7:
+                    nommageAxesHeuresFactory("15:00", j, ins);
+                    break;
+                case 8:
+                    nommageAxesHeuresFactory("16:00", j, ins);
+                    break;
+                case 9:
+                    nommageAxesHeuresFactory("17:00", j, ins);
+                    break;
+                case 10:
+                    nommageAxesHeuresFactory("18:00", j, ins);
+                    break;
+
+            }
+        }
+    }
+
+    public void nommageAxesJoursFactory(String jour, int i, Insets ins) {
+        int widthX = 200;
+        int heightX = 20;
+        JPanel lun = new JPanel();
+        lun.add("Center", new JLabel(jour));
+        lun.setPreferredSize(new Dimension(widthX, heightX));
+        lun.setBounds(50 + i * widthX, ins.top, widthX, heightX);
+        this.add(lun);
+    }
+
+    public void nommageAxesHeuresFactory(String heure, int i, Insets ins) {
+        int widthY = 50;
+        int heightY = 100;
+        int widthX = 200;
+        int heightX = 20;
+        JPanel lun = new JPanel();
+        lun.add("Center", new JLabel(heure));
+        lun.setPreferredSize(new Dimension(widthY, heightY));
+        lun.setBounds(ins.left, 8+i*heightY, widthY, heightY);
+        this.add(lun);
     }
 
     public void actualise() {

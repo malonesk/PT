@@ -11,18 +11,42 @@ import javax.swing.JPanel;
  */
 
 public class EdtFactory extends JPanel {
-    int width = this.getWidth();
-    int height = this.getHeight();
-    double length = Math.sqrt(width * width + height * height);
+    public int width = this.getWidth();
+    public int height = this.getHeight();
+    public double length = Math.sqrt(width * width + height * height);
+    public int Xdeb;
+    public int Ydeb;
+    public EdtFactory() {
+        Xdeb=-1;
+        Ydeb=-1;
+    }
+    public EdtFactory(int Xdeb, int Ydeb) {
+        this.Xdeb=Xdeb;
+        this.Ydeb=Ydeb;
+    }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        this.quadriller(g);
+        if (Xdeb<0 || Ydeb<0) {
+            this.quadriller(g);
+        }
+        else this.drawBottomLine(g,Xdeb,Ydeb);
     }
+    public void paintLine(Graphics g, int Xdeb, int Ydeb) {
+        super.paintComponent(g);
+
+    }
+
+    public void drawBottomLine(Graphics g, int Xdeb, int Ydeb) {
+        g.setColor(Color.BLACK);
+        int width = 200;
+        g.drawLine(Xdeb,Ydeb,Xdeb+width,Ydeb);
+    }
+
 
     public void quadriller(Graphics g) {
 
-        g.setColor(Color.BLUE);
+        g.setColor(Color.BLACK);
 
         int width = this.getWidth();
         int height = this.getHeight();
