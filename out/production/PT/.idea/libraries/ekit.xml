@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="ekit">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/pt/ekit/ekitspell.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/pt/ekit/ekit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/pt/ekit/ekitapplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/pt/ekit/ekitappletspell.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

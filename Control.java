@@ -19,7 +19,7 @@ public class Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-            if (e.getSource() == v.bouton) {}
+            if (e.getSource() == v.nouveau) {}
 
         }
 }
