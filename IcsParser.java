@@ -2,13 +2,6 @@ import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.*;
 import net.fortuna.ical4j.model.Calendar;
-import java.sql.Timestamp.*;
-import java.sql.Time.*;
-import java.sql.Date.*;
-
-import net.fortuna.ical4j.model.DateTime;
-import org.joda.time.*;
-import org.joda.time.format.DateTimeFormatter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -33,7 +26,7 @@ public class IcsParser {
     private List<String> classes;
     private List<String> groupes_profs;
     public List<Component> weekComponent;
-    public EdtFactory edtDisp;
+    public GridFactory edtDisp;
     public Case cell;
 
     public  IcsParser(String path) {
@@ -44,10 +37,6 @@ public class IcsParser {
         }
 
         CalendarBuilder builder = new CalendarBuilder();
-        int year, month, day;
-        year=2016;
-        month=12;
-        day=12;
         try {
             cal = builder.build(fin);
         } catch (IOException e) {
@@ -70,10 +59,6 @@ public class IcsParser {
         }
 
         CalendarBuilder builder = new CalendarBuilder();
-        int year, month, day;
-        year=2016;
-        month=12;
-        day=12;
         try {
             cal = builder.build(fin);
         } catch (IOException e) {
@@ -92,30 +77,24 @@ public class IcsParser {
     public DateRange initDateRangeCal(DateRange dr) {
 
         Date start, end, today;
-        //today = new Date();
         SimpleDateFormat formaterThisWeeksMonday = new SimpleDateFormat("dd/MM/yyyy");
         today = dr.getRangeStart();
-        //System.out.println("aujd :"+today);
+
         SimpleDateFormat formaterW = new SimpleDateFormat("ww");
         SimpleDateFormat formaterY = new SimpleDateFormat("yyyy");
         int sem = Integer.parseInt(formaterW.format(today));
         int ann = Integer.parseInt(formaterY.format(today));
-        //System.out.println(sem);
-        //System.out.println(ann);
 
         Date thisWeek = formaterThisWeeksMonday.parse("01/01/"+ann, new ParsePosition(0));
-        //System.out.println("thisweek"+thisWeek);
         SimpleDateFormat formaterDay = new SimpleDateFormat("EEE");
         while(!formaterDay.format(thisWeek).equals("lun.")) {
             thisWeek=ajouterJour(thisWeek,1);
-            //System.out.println(thisWeek);
         }
         for (int i=1;i<sem;i++) {
             thisWeek=ajouterJour(thisWeek,7);
         }
         start = thisWeek;
         end = ajouterJour(start,7);
-        //System.out.println(start.toString()+end.toString());
         return new DateRange(start,end);
     }
 
@@ -123,29 +102,23 @@ public class IcsParser {
 
         Date start, end, today;
         today = new Date();
-        SimpleDateFormat formaterThisWeeksMonday = new SimpleDateFormat("dd/MM/yyyy");
         //today = formaterThisWeeksMonday.parse("05/10/2016", new ParsePosition(0));
-        //System.out.println("aujd :"+today);
+        SimpleDateFormat formaterThisWeeksMonday = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formaterW = new SimpleDateFormat("ww");
         SimpleDateFormat formaterY = new SimpleDateFormat("yyyy");
         int sem = Integer.parseInt(formaterW.format(today));
         int ann = Integer.parseInt(formaterY.format(today));
-        //System.out.println(sem);
-        //System.out.println(ann);
 
         Date thisWeek = formaterThisWeeksMonday.parse("01/01/"+ann, new ParsePosition(0));
-        //System.out.println("thisweek"+thisWeek);
         SimpleDateFormat formaterDay = new SimpleDateFormat("EEE");
         while(!formaterDay.format(thisWeek).equals("lun.")) {
             thisWeek=ajouterJour(thisWeek,1);
-            //System.out.println(thisWeek);
         }
         for (int i=1;i<sem;i++) {
             thisWeek=ajouterJour(thisWeek,7);
         }
         start = thisWeek;
         end = ajouterJour(start,7);
-        //System.out.println(start.toString()+end.toString());
         return new DateRange(start,end);
     }
 
@@ -164,7 +137,6 @@ public class IcsParser {
                     }
 
                     if (isInWeek2(d)) {
-                        System.out.println(d.toString());
                         weekComponent.add(component);
                     }
                 }
@@ -193,14 +165,15 @@ public class IcsParser {
 
     }
 
-    public void setParseInfo() {
+    public void setParseInfo(DateRange dr) {
         for (Iterator i = cal.getComponents().iterator(); i.hasNext();) {
             Component component = (Component) i.next();
             for (Iterator j = component.getProperties().iterator(); j.hasNext();) {
                 Property property = (Property) j.next();
-                if (property.getName()=="LOCATION") locations.add(property.getValue());
-                if (property.getName()=="SUMMARY") classes.add(property.getValue());
-                if (property.getName()=="DESCRIPTION") groupes_profs.add(property.getValue());
+                if (property.getName().equals("DTSTART") )
+                    if (property.getName()=="LOCATION") locations.add(property.getValue());
+                    if (property.getName()=="SUMMARY") classes.add(property.getValue());
+                    if (property.getName()=="DESCRIPTION") groupes_profs.add(property.getValue());
             }
         }
     }
@@ -232,7 +205,6 @@ public class IcsParser {
                     }
 
                     if (isInWeek2(d)) {
-                        //System.out.println(d.toString());
                         weekComponent.add(component);
                     }
                 }
@@ -241,6 +213,7 @@ public class IcsParser {
         sortComponentByDate();
     }
 
+    /*
     public ArrayList<Component> getWeekInfo() {
         ArrayList<Component> comps = new ArrayList<>();
         for (Iterator i = cal.getComponents().iterator(); i.hasNext();) {
@@ -264,7 +237,7 @@ public class IcsParser {
             }
         }
         return comps;
-    }
+    }*/
 
     public boolean isInWeek2(Date d) {
         return currentWeek.includes(d);
@@ -279,10 +252,8 @@ public class IcsParser {
             return null;
         }
         String d = prop.getValue();
-        //System.out.println(d);
         SimpleDateFormat formater = new SimpleDateFormat("yyyyMMdd'T'kkmmss'Z'");
         Date da = formater.parse(d, new ParsePosition(0));
-        //System.out.println(da);
         return formater.parse(d, new ParsePosition(0));
     }
 
@@ -361,10 +332,6 @@ public class IcsParser {
 
 
     public Case buildCase(Component component) {
-
-        double nbHeures=0;
-
-
         return new Case(component);
     }
 
@@ -378,9 +345,6 @@ public class IcsParser {
         List<Case> lca = new ArrayList<>();
         listWeek=icsp.getWeekComponent();
         if (listWeek.size()==0) System.out.println("taille listWeek 0");
-
-
-
     }
 
 

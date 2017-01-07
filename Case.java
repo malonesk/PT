@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * Created by malonesk on 04/01/17.
  */
-public class Case implements Comparable<java.util.Date> {
+public class Case {
     public double width, height;
     public IcsParser icsp;
     public Component component;
@@ -21,7 +21,6 @@ public class Case implements Comparable<java.util.Date> {
     public JLabel matiere;
     public java.util.Date datedeb;
     public java.util.Date datefin;
-    int weekday, dayhour;
 
     public Case(Component c) {
         super();
@@ -56,20 +55,6 @@ public class Case implements Comparable<java.util.Date> {
     public String[] splitGroupeEtProf() {
         String groupeEtProf="";
         groupeEtProf= icsp.getGroupesEtProfs(component);
-
-        /*
-        int i=1;
-        while(groupeEtProf.charAt(i)!= '\n') {
-            p[0]+=groupeEtProf.charAt(i);
-            i++;
-        }
-        i=p[0].length()+2;
-        if ((i+1)!=groupeEtProf.length()) {
-            while (groupeEtProf.charAt(i) != '\n') {
-                p[1] += groupeEtProf.charAt(i);
-                i++;
-            }
-        }*/
         Pattern pattern = Pattern.compile(Pattern.quote("\n"));
         String[] data = pattern.split(groupeEtProf);
         String[] p;
@@ -103,7 +88,6 @@ public class Case implements Comparable<java.util.Date> {
         String[] groupeEtProf;
         groupeEtProf=splitGroupeEtProf();
         int i=0;
-        for (int j=0;j<groupeEtProf.length;j++) System.out.println(groupeEtProf[j]);
         if (groupeEtProf.length==0) {
             String grp = "";
             groupe = new JLabel(grp);
@@ -139,10 +123,4 @@ public class Case implements Comparable<java.util.Date> {
         return ""+matiere+" "+prof+" "+location+" "+groupe;
     }
 
-
-    @Override
-    public int compareTo(java.util.Date date) { // == : 0 ; > : 1 ; < : -1
-
-        return 0;
-    }
 }
