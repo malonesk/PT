@@ -19,9 +19,11 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-package com.hexidec.ekit;
+package ekit.com.hexidec.ekit;
 
-import com.hexidec.ekit.test.ExplorateurFichiers;
+import com.hexidec.ekit.EkitCore;
+import com.hexidec.ekit.EkitCoreSpell;
+import ekit.com.hexidec.ekit.test.ExplorateurFichiers;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,7 +81,7 @@ public class TestEkit extends JFrame implements WindowListener
         {
             ekitCore = new EkitCore(false, sDocument, sStyleSheet, sRawDocument, null, urlStyleSheet, includeToolBar, showViewSource, showMenuIcons, editModeExclusive, sLanguage, sCountry, base64, debugMode, false, multiBar, (multiBar ? EkitCore.TOOLBAR_DEFAULT_MULTI : EkitCore.TOOLBAR_DEFAULT_SINGLE), enterBreak);
         }
-        explo=new ExplorateurFichiers("d:/",ekitCore);
+        explo=new ExplorateurFichiers("/home/malonesk",ekitCore);
         explofich=explo.getExplorateur();
         controller=new Controller(this);
 

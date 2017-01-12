@@ -1,6 +1,6 @@
-package com.hexidec.ekit;
+package ekit.com.hexidec.ekit;
 
-import com.hexidec.ekit.test.ExplorateurFichiers;
+import ekit.com.hexidec.ekit.test.ExplorateurFichiers;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if ((((JButton)e.getSource()).getText()).equals("Rafraichir")){
 
-            ekit.explofich=new ExplorateurFichiers("d:/",ekit.ekitCore).getExplorateur();
+            ekit.explofich=new ExplorateurFichiers("/home/malonesk",ekit.ekitCore).getExplorateur();
             SwingUtilities.updateComponentTreeUI(ekit);
 
         }

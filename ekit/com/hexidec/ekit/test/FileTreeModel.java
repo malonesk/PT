@@ -1,4 +1,4 @@
-package com.hexidec.ekit.test;
+package ekit.com.hexidec.ekit.test;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;

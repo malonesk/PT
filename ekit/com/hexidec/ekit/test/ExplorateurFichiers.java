@@ -1,4 +1,4 @@
-package com.hexidec.ekit.test;
+package ekit.com.hexidec.ekit.test;
 
 import com.hexidec.ekit.EkitCore;
 
@@ -50,7 +50,6 @@ public class ExplorateurFichiers extends JPanel implements TreeSelectionListener
         try {
             ekit.loadDocument(file);
         } catch (IOException e1) {
-            e1.printStackTrace();
         } catch (BadLocationException e1) {
             e1.printStackTrace();
         }

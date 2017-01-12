@@ -113,7 +113,6 @@ public class EdtDisplayer extends JFrame{
         this.add(nextW);
         this.add(prevW);
         this.getContentPane().add(gridEdt);
-
         SwingUtilities.updateComponentTreeUI(this);
         this.setVisible(true);
     }
