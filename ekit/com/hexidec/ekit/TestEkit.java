@@ -81,70 +81,115 @@ public class TestEkit extends JFrame implements WindowListener
         {
             ekitCore = new EkitCore(false, sDocument, sStyleSheet, sRawDocument, null, urlStyleSheet, includeToolBar, showViewSource, showMenuIcons, editModeExclusive, sLanguage, sCountry, base64, debugMode, false, multiBar, (multiBar ? EkitCore.TOOLBAR_DEFAULT_MULTI : EkitCore.TOOLBAR_DEFAULT_SINGLE), enterBreak);
         }
-        explo=new ExplorateurFichiers("/home/malonesk",ekitCore);
+        explo=new ExplorateurFichiers("d:/",ekitCore);
         explofich=explo.getExplorateur();
-        controller=new Controller(this);
+        // controller=new Controller(this);
 
         ekitCore.setFrame(this);
-
+        JMenuBar bar=new JMenuBar();
+        bar.add(new JMenu("menu"));
+        bar.add(new JMenu("menu 2"));
+        bar.add(new JMenu("menu 3"));
+        this.add(bar);
+        JPanel paneEkit=new JPanel();
+        JPanel panearbo=new JPanel();
 		/* Add the components to the app */
-		if(includeToolBar)
-		{
-			if(multiBar)
-			{
-				this.getContentPane().setLayout(new GridBagLayout());
-				GridBagConstraints gbc = new GridBagConstraints();
-				gbc.fill       = GridBagConstraints.HORIZONTAL;
-				gbc.anchor     = GridBagConstraints.NORTH;
-				gbc.gridheight = 1;
-				gbc.gridwidth  = 1;
-				gbc.weightx    = 1.0;
-				gbc.weighty    = 0.0;
-				gbc.gridx      = 1;
+        if(includeToolBar)
+        {
+            if(multiBar)
+            {
+                paneEkit.setLayout(new GridBagLayout());
+                panearbo.setLayout(new GridBagLayout());
+                GridBagConstraints gbcarbo = new GridBagConstraints();
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbcarbo.fill       = GridBagConstraints.HORIZONTAL;
+                gbcarbo.anchor     = GridBagConstraints.NORTH;
+                gbcarbo.gridheight = 1;
+                gbcarbo.gridwidth  = 1;
+                gbcarbo.weightx    = 1.0;
+                gbcarbo.weighty    = 0.0;
+                gbcarbo.gridx      = 1;
+                gbcarbo.gridy      = 1;
 
-				gbc.gridy      = 1;
-				this.getContentPane().add(ekitCore.getToolBarMain(includeToolBar), gbc);
 
-				gbc.gridy      = 2;
+                gbc.fill       = GridBagConstraints.HORIZONTAL;
+                gbc.anchor     = GridBagConstraints.NORTH;
+                gbc.gridheight = 1;
+                gbc.gridwidth  = 1;
+                gbc.weightx    = 1.0;
+                gbc.weighty    = 0.0;
+                gbc.gridx      = 1;
+
+                gbc.gridy      = 1;
+                paneEkit.add(ekitCore.getMenuBar(), gbc);
+                gbc.gridy      = 2;
+
+
+                paneEkit.add(ekitCore.getToolBarMain(includeToolBar), gbc);
+
+                gbc.gridy      = 3;
                 refresh=new JButton("Rafraichir");
-                ekitCore.getToolBarStyles(includeToolBar).add(refresh);
-				this.getContentPane().add(ekitCore.getToolBarFormat(includeToolBar), gbc);
+                paneEkit.add(ekitCore.getToolBarFormat(includeToolBar), gbc);
 
-				gbc.gridy      = 3;
-				this.getContentPane().add(ekitCore.getToolBarStyles(includeToolBar), gbc);
+                gbc.gridy      = 4;
+                paneEkit.add(ekitCore.getToolBarStyles(includeToolBar), gbc);
 
-				gbc.anchor     = GridBagConstraints.SOUTH;
-				gbc.fill       = GridBagConstraints.BOTH;
-				gbc.weighty    = 1.0;
-				gbc.gridy      = 4;
+                gbc.anchor     = GridBagConstraints.SOUTH;
+                gbc.fill       = GridBagConstraints.BOTH;
+                gbc.weighty    = 1.0;
+                gbc.gridy      = 5;
 
-				this.getContentPane().add(ekitCore, gbc);
-                gbc.gridx=2;
-                this.getContentPane().add(explofich,gbc);
-                gbc.gridy=3;
+                paneEkit.add(ekitCore, gbc);
+                gbcarbo.gridy=3;
+                panearbo.add(refresh,gbcarbo);
+                gbcarbo.gridy=4;
+                gbcarbo.anchor     = GridBagConstraints.SOUTH;
+                gbcarbo.fill       = GridBagConstraints.BOTH;
+                gbcarbo.weighty    = 1.0;
+                panearbo.add(explofich,gbcarbo);
+
+
 
 
                 setActionListener(controller);
 
 
                 //this.getContentPane().add(refresh,gbc);
-			}
-			else
-			{
-				this.getContentPane().setLayout(new BorderLayout());
-				this.getContentPane().add(ekitCore, BorderLayout.CENTER);
-				this.getContentPane().add(explofich,BorderLayout.EAST);
-				this.getContentPane().add(ekitCore.getToolBar(includeToolBar), BorderLayout.NORTH);
-			}
-		}
-		else
-		{
-        this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(ekitCore, BorderLayout.CENTER);
-        this.getContentPane().add(explofich,BorderLayout.EAST);
+            }
+            else
+            {
+                paneEkit.setLayout(new BorderLayout());
+                panearbo.setLayout(new BorderLayout());
+                paneEkit.add(ekitCore, BorderLayout.CENTER);
+                panearbo.add(explofich,BorderLayout.CENTER);
+                paneEkit.add(ekitCore.getToolBar(includeToolBar), BorderLayout.NORTH);
+            }
+        }
+        else
+        {
+            paneEkit.setLayout(new BorderLayout());
+            panearbo.setLayout(new BorderLayout());
+            paneEkit.add(ekitCore, BorderLayout.CENTER);
+            panearbo.add(explofich,BorderLayout.CENTER);
         }
 
-        this.setJMenuBar(ekitCore.getMenuBar()); //bar de menu : files, settings etc.
+        this.getContentPane().setLayout(new GridBagLayout());
+        this.getContentPane().setLayout(new GridBagLayout());
+
+        GridBagConstraints gbcFrame = new GridBagConstraints();
+        gbcFrame.fill       = GridBagConstraints.HORIZONTAL;
+        gbcFrame.anchor     = GridBagConstraints.NORTH;
+        gbcFrame.gridheight = 1;
+        gbcFrame.gridwidth  = 1;
+        gbcFrame.weightx    = 1.0;
+        gbcFrame.weighty    = 0.0;
+        gbcFrame.gridx      = 1;
+
+        gbcFrame.gridy      = 1;
+        this.add(paneEkit,gbcFrame);
+        gbcFrame.gridx      = 2;
+        this.add(panearbo,gbcFrame);
+        this.setJMenuBar(bar); //bar de menu : files, settings etc.
 
         this.addWindowListener(this);
         currentFile=explo.getSelection();
