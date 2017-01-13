@@ -20,7 +20,7 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if ((((JButton)e.getSource()).getText()).equals("Rafraichir")){
 
-            ekit.explofich=new ExplorateurFichiers("D:/",ekit.ekitCore).getExplorateur();
+            ekit.explofich=new ExplorateurFichiers("/home/malonesk",ekit.ekitCore).getExplorateur();
             SwingUtilities.updateComponentTreeUI(ekit);
             ekit.resume.parse(ekit.ekitCore.getExtendedHtmlDoc());
             ekit.resume.getResume();

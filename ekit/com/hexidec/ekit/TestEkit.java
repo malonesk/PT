@@ -33,6 +33,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -50,7 +51,7 @@ import java.net.URL;
 public class TestEkit extends JFrame implements WindowListener
 {
     protected final JMenu edtMenu;
-    private final JMenu arboMenu;
+    private final JMenu arboMenu, resumeMenu;
     public EkitCore ekitCore;
     public ExplorateurFichiers explo;
     public JScrollPane explofich;
@@ -58,7 +59,7 @@ public class TestEkit extends JFrame implements WindowListener
     private JButton refresh;
     private Controller controller;
     public MenuController menuController;
-    public JMenuItem afficher, rafraichArboMenu;
+    public JMenuItem afficher, rafraichArboMenu, genererResume;
     public Resume resume;
 
     /** Master Constructor
@@ -88,7 +89,7 @@ public class TestEkit extends JFrame implements WindowListener
         {
             ekitCore = new EkitCore(false, sDocument, sStyleSheet, sRawDocument, null, urlStyleSheet, includeToolBar, showViewSource, showMenuIcons, editModeExclusive, sLanguage, sCountry, base64, debugMode, false, multiBar, (multiBar ? EkitCore.TOOLBAR_DEFAULT_MULTI : EkitCore.TOOLBAR_DEFAULT_SINGLE), enterBreak);
         }
-        explo=new ExplorateurFichiers("D:/",ekitCore);
+        explo=new ExplorateurFichiers("/home/malonesk",ekitCore);
         explofich=explo.getExplorateur();
         controller=new Controller(this);
 
@@ -107,9 +108,16 @@ public class TestEkit extends JFrame implements WindowListener
         rafraichArboMenu = new JMenuItem("Rafraichir");
         this.add(rafraichArboMenu);
         arboMenu.add(rafraichArboMenu);
+
+        resumeMenu = new JMenu("Resumé");
+        genererResume = new JMenuItem("Générer");
+        this.add(resumeMenu);
+        resumeMenu.add(genererResume);
+
         bar.add(ekitMenu);
         bar.add(edtMenu);
         bar.add(arboMenu);
+        bar.add(resumeMenu);
 
         resume = new Resume();
         resume.parse(ekitCore.getExtendedHtmlDoc());
@@ -197,6 +205,7 @@ public class TestEkit extends JFrame implements WindowListener
 
                 setActionListener(controller);
                 fnAddActionListener(edtMenu);
+                fnAddActionListener(resumeMenu);
 
 
                 //this.getContentPane().add(refresh,gbc);
@@ -235,10 +244,12 @@ public class TestEkit extends JFrame implements WindowListener
         gbcFrame.gridx      = 1;
 
         gbcFrame.gridy      = 1;
+        paneResume.setPreferredSize(new Dimension(200,515));
         this.add(paneResume,gbcFrame);
         gbcFrame.gridx      = 2;
         this.add(paneEkit,gbcFrame);
         gbcFrame.gridx      = 3;
+        panearbo.setPreferredSize(new Dimension(200,515));
         this.add(panearbo,gbcFrame);
         this.setJMenuBar(bar); //bar de menu : files, settings etc.
 
@@ -252,7 +263,7 @@ public class TestEkit extends JFrame implements WindowListener
     public void setActionListener(ActionListener listener){
         refresh.addActionListener(listener);
         //afficher.addActionListener(listener);
-        rafraichArboMenu.addActionListener(listener);
+        //rafraichArboMenu.addActionListener(listener);
     }
 
     public TestEkit()
@@ -397,8 +408,21 @@ public class TestEkit extends JFrame implements WindowListener
         if (e.getSource().equals(afficher)) {
             System.out.println("ok");
             EdtDisplayer edtd = new EdtDisplayer("ADECal.ics");
-        } else if (e.getSource().equals(rafraichArboMenu)) {
-            System.out.println("Menu Item 2");
+        } else if (e.getSource().equals(genererResume)) {
+            resume.parse(ekitCore.getExtendedHtmlDoc());
+            resume.getResume();
+            getContentPane().repaint();
+            //ekit.getContentPane().add(ekit.resume);
+            resume.revalidate();
+            try {
+                resume.ecrire("salut.txt");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        else if (e.getSource().equals(rafraichArboMenu)) {
+            explofich=new ExplorateurFichiers("/home/malonesk",ekitCore).getExplorateur();
+            SwingUtilities.updateComponentTreeUI(this);
         }
     }
 
