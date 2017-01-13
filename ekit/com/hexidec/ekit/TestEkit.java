@@ -24,6 +24,7 @@ package ekit.com.hexidec.ekit;
 import com.hexidec.ekit.EkitCore;
 import com.hexidec.ekit.EkitCoreSpell;
 import ekit.com.hexidec.ekit.test.ExplorateurFichiers;
+import ekit.com.hexidec.ekit.test.Resume;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,6 +59,7 @@ public class TestEkit extends JFrame implements WindowListener
     private Controller controller;
     public MenuController menuController;
     public JMenuItem afficher, rafraichArboMenu;
+    public Resume resume;
 
     /** Master Constructor
      * @param sDocument         [String]  A text or HTML document to load in the editor upon startup.
@@ -86,7 +88,7 @@ public class TestEkit extends JFrame implements WindowListener
         {
             ekitCore = new EkitCore(false, sDocument, sStyleSheet, sRawDocument, null, urlStyleSheet, includeToolBar, showViewSource, showMenuIcons, editModeExclusive, sLanguage, sCountry, base64, debugMode, false, multiBar, (multiBar ? EkitCore.TOOLBAR_DEFAULT_MULTI : EkitCore.TOOLBAR_DEFAULT_SINGLE), enterBreak);
         }
-        explo=new ExplorateurFichiers("/home/malonesk",ekitCore);
+        explo=new ExplorateurFichiers("D:/",ekitCore);
         explofich=explo.getExplorateur();
         // controller=new Controller(this);
 
@@ -109,11 +111,16 @@ public class TestEkit extends JFrame implements WindowListener
         bar.add(edtMenu);
         bar.add(arboMenu);
 
+        resume = new Resume();
+        resume.parse(ekitCore.getExtendedHtmlDoc());
+        resume.getResume();
+
 
 
         this.add(bar);
         JPanel paneEkit=new JPanel();
         JPanel panearbo=new JPanel();
+        JPanel paneResume=new JPanel();
 
 		/* Add the components to the app */
         if(includeToolBar)
@@ -122,6 +129,8 @@ public class TestEkit extends JFrame implements WindowListener
             {
                 paneEkit.setLayout(new GridBagLayout());
                 panearbo.setLayout(new GridBagLayout());
+                paneResume.setLayout(new GridLayout());
+                GridBagConstraints gbcResume = new GridBagConstraints();
                 GridBagConstraints gbcarbo = new GridBagConstraints();
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbcarbo.fill       = GridBagConstraints.HORIZONTAL;
@@ -172,6 +181,19 @@ public class TestEkit extends JFrame implements WindowListener
 
 
 
+                gbcResume.fill       = GridBagConstraints.HORIZONTAL;
+                gbcResume.anchor     = GridBagConstraints.NORTH;
+                gbcResume.gridheight = 1;
+                gbcResume.gridwidth  = 1;
+                gbcResume.weightx    = 1.0;
+                gbcResume.weighty    = 0.0;
+                gbcResume.gridx      = 1;
+                gbcResume.gridy      = 1;
+
+                paneResume.add(resume);
+
+
+
 
                 setActionListener(controller);
                 fnAddActionListener(edtMenu);
@@ -181,19 +203,23 @@ public class TestEkit extends JFrame implements WindowListener
             }
             else
             {
+                paneResume.setLayout(new BorderLayout());
                 paneEkit.setLayout(new BorderLayout());
                 panearbo.setLayout(new BorderLayout());
                 paneEkit.add(ekitCore, BorderLayout.CENTER);
                 panearbo.add(explofich,BorderLayout.CENTER);
+                paneResume.add(resume,BorderLayout.CENTER);
                 paneEkit.add(ekitCore.getToolBar(includeToolBar), BorderLayout.NORTH);
             }
         }
         else
         {
+            paneResume.setLayout(new BorderLayout());
             paneEkit.setLayout(new BorderLayout());
             panearbo.setLayout(new BorderLayout());
             paneEkit.add(ekitCore, BorderLayout.CENTER);
             panearbo.add(explofich,BorderLayout.CENTER);
+            paneResume.add(resume,BorderLayout.CENTER);
         }
 
         this.getContentPane().setLayout(new GridBagLayout());
@@ -209,8 +235,10 @@ public class TestEkit extends JFrame implements WindowListener
         gbcFrame.gridx      = 1;
 
         gbcFrame.gridy      = 1;
-        this.add(paneEkit,gbcFrame);
+        this.add(paneResume,gbcFrame);
         gbcFrame.gridx      = 2;
+        this.add(paneEkit,gbcFrame);
+        gbcFrame.gridx      = 3;
         this.add(panearbo,gbcFrame);
         this.setJMenuBar(bar); //bar de menu : files, settings etc.
 
@@ -224,7 +252,7 @@ public class TestEkit extends JFrame implements WindowListener
     public void setActionListener(ActionListener listener){
         refresh.addActionListener(listener);
         //afficher.addActionListener(listener);
-        rafraichArboMenu.addActionListener(listener);
+        //rafraichArboMenu.addActionListener(listener);
     }
 
     public TestEkit()
@@ -356,6 +384,7 @@ public class TestEkit extends JFrame implements WindowListener
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         fnMenuItemAction(e);
+                        System.out.println("ok");
                     }
                 });
             }
@@ -365,7 +394,8 @@ public class TestEkit extends JFrame implements WindowListener
     //menu item action event
     public void fnMenuItemAction(ActionEvent e) {
         if (e.getSource().equals(afficher)) {
-            EdtDisplayer edtd = new EdtDisplayer("ADECal.ics");
+            System.out.println("ok");
+            //EdtDisplayer edtd = new EdtDisplayer("ADECal.ics");
         } else if (e.getSource().equals(rafraichArboMenu)) {
             System.out.println("Menu Item 2");
         }
