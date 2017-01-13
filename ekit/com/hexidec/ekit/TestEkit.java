@@ -90,7 +90,7 @@ public class TestEkit extends JFrame implements WindowListener
         }
         explo=new ExplorateurFichiers("D:/",ekitCore);
         explofich=explo.getExplorateur();
-        // controller=new Controller(this);
+        controller=new Controller(this);
 
         ekitCore.setFrame(this);
         JMenuBar bar=new JMenuBar();
@@ -207,8 +207,8 @@ public class TestEkit extends JFrame implements WindowListener
                 paneEkit.setLayout(new BorderLayout());
                 panearbo.setLayout(new BorderLayout());
                 paneEkit.add(ekitCore, BorderLayout.CENTER);
-                panearbo.add(explofich,BorderLayout.CENTER);
-                paneResume.add(resume,BorderLayout.CENTER);
+                panearbo.add(explofich,BorderLayout.EAST);
+                paneResume.add(resume,BorderLayout.WEST);
                 paneEkit.add(ekitCore.getToolBar(includeToolBar), BorderLayout.NORTH);
             }
         }
@@ -218,8 +218,8 @@ public class TestEkit extends JFrame implements WindowListener
             paneEkit.setLayout(new BorderLayout());
             panearbo.setLayout(new BorderLayout());
             paneEkit.add(ekitCore, BorderLayout.CENTER);
-            panearbo.add(explofich,BorderLayout.CENTER);
-            paneResume.add(resume,BorderLayout.CENTER);
+            panearbo.add(explofich,BorderLayout.EAST);
+            paneResume.add(resume,BorderLayout.WEST);
         }
 
         this.getContentPane().setLayout(new GridBagLayout());
@@ -252,7 +252,7 @@ public class TestEkit extends JFrame implements WindowListener
     public void setActionListener(ActionListener listener){
         refresh.addActionListener(listener);
         //afficher.addActionListener(listener);
-        //rafraichArboMenu.addActionListener(listener);
+        rafraichArboMenu.addActionListener(listener);
     }
 
     public TestEkit()
@@ -377,6 +377,7 @@ public class TestEkit extends JFrame implements WindowListener
         }
         TestEkit ekit = new TestEkit(sDocument, sStyleSheet, sRawDocument, urlStyleSheet, includeToolBar, includeViewSource, includeMenuIcons, modeExclusive, sLang, sCtry, base64, debugOn, spellCheck, multibar, enterBreak);
     }
+
     public void fnAddActionListener(JMenu mnu) {
         if (mnu.getItemCount() != 0) {
             for (int iCount = 0; iCount < mnu.getItemCount(); iCount++) {
@@ -395,10 +396,11 @@ public class TestEkit extends JFrame implements WindowListener
     public void fnMenuItemAction(ActionEvent e) {
         if (e.getSource().equals(afficher)) {
             System.out.println("ok");
-            //EdtDisplayer edtd = new EdtDisplayer("ADECal.ics");
+            EdtDisplayer edtd = new EdtDisplayer("ADECal.ics");
         } else if (e.getSource().equals(rafraichArboMenu)) {
             System.out.println("Menu Item 2");
         }
     }
+
 
 }
