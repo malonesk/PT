@@ -1,11 +1,10 @@
+package ekit.com.hexidec.ekit;
+
 import net.fortuna.ical4j.model.Component;
-import net.fortuna.ical4j.model.Date;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
@@ -24,7 +23,7 @@ public class Case {
 
     public Case(Component c) {
         super();
-        icsp = new IcsParser("ADECal.ics");
+        icsp = new IcsParser("ekit/com/hexidec/ekit/ADECal.ics");
         component=c;
         width=1200/6;
         height=1000/(10);

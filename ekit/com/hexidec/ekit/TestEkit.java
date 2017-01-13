@@ -27,6 +27,7 @@ import ekit.com.hexidec.ekit.test.ExplorateurFichiers;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -47,12 +48,16 @@ import java.net.URL;
 
 public class TestEkit extends JFrame implements WindowListener
 {
+    protected final JMenu edtMenu;
+    private final JMenu arboMenu;
     public EkitCore ekitCore;
     public ExplorateurFichiers explo;
     public JScrollPane explofich;
     private File currentFile = (File)null;
     private JButton refresh;
     private Controller controller;
+    public MenuController menuController;
+    public JMenuItem afficher, rafraichArboMenu;
 
     /** Master Constructor
      * @param sDocument         [String]  A text or HTML document to load in the editor upon startup.
@@ -81,18 +86,35 @@ public class TestEkit extends JFrame implements WindowListener
         {
             ekitCore = new EkitCore(false, sDocument, sStyleSheet, sRawDocument, null, urlStyleSheet, includeToolBar, showViewSource, showMenuIcons, editModeExclusive, sLanguage, sCountry, base64, debugMode, false, multiBar, (multiBar ? EkitCore.TOOLBAR_DEFAULT_MULTI : EkitCore.TOOLBAR_DEFAULT_SINGLE), enterBreak);
         }
-        explo=new ExplorateurFichiers("d:/",ekitCore);
+        explo=new ExplorateurFichiers("/home/malonesk",ekitCore);
         explofich=explo.getExplorateur();
         // controller=new Controller(this);
 
         ekitCore.setFrame(this);
         JMenuBar bar=new JMenuBar();
-        bar.add(new JMenu("menu"));
-        bar.add(new JMenu("menu 2"));
-        bar.add(new JMenu("menu 3"));
+        JMenu ekitMenu = new JMenu("Ekit");
+        ekitMenu.add(new JMenuItem("Nouveau"));
+
+
+        edtMenu = new JMenu("Emploi du temps");
+        afficher = new JMenuItem("Afficher");
+        this.add(afficher);
+        edtMenu.add(afficher);
+
+        arboMenu = new JMenu("Arborescence");
+        rafraichArboMenu = new JMenuItem("Rafraichir");
+        this.add(rafraichArboMenu);
+        arboMenu.add(rafraichArboMenu);
+        bar.add(ekitMenu);
+        bar.add(edtMenu);
+        bar.add(arboMenu);
+
+
+
         this.add(bar);
         JPanel paneEkit=new JPanel();
         JPanel panearbo=new JPanel();
+
 		/* Add the components to the app */
         if(includeToolBar)
         {
@@ -152,6 +174,7 @@ public class TestEkit extends JFrame implements WindowListener
 
 
                 setActionListener(controller);
+                fnAddActionListener(edtMenu);
 
 
                 //this.getContentPane().add(refresh,gbc);
@@ -200,7 +223,8 @@ public class TestEkit extends JFrame implements WindowListener
     }
     public void setActionListener(ActionListener listener){
         refresh.addActionListener(listener);
-
+        //afficher.addActionListener(listener);
+        rafraichArboMenu.addActionListener(listener);
     }
 
     public TestEkit()
@@ -324,6 +348,27 @@ public class TestEkit extends JFrame implements WindowListener
             else if(args[i].equals("-D"))     { debugOn = false; }
         }
         TestEkit ekit = new TestEkit(sDocument, sStyleSheet, sRawDocument, urlStyleSheet, includeToolBar, includeViewSource, includeMenuIcons, modeExclusive, sLang, sCtry, base64, debugOn, spellCheck, multibar, enterBreak);
+    }
+    public void fnAddActionListener(JMenu mnu) {
+        if (mnu.getItemCount() != 0) {
+            for (int iCount = 0; iCount < mnu.getItemCount(); iCount++) {
+                (mnu.getItem(iCount)).addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        fnMenuItemAction(e);
+                    }
+                });
+            }
+        }
+    }
+
+    //menu item action event
+    public void fnMenuItemAction(ActionEvent e) {
+        if (e.getSource().equals(afficher)) {
+            EdtDisplayer edtd = new EdtDisplayer("ADECal.ics");
+        } else if (e.getSource().equals(rafraichArboMenu)) {
+            System.out.println("Menu Item 2");
+        }
     }
 
 }

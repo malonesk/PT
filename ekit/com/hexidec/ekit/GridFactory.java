@@ -1,3 +1,5 @@
+package ekit.com.hexidec.ekit;
+
 import sun.security.x509.EDIPartyName;
 
 import javax.swing.*;

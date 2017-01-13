@@ -1,3 +1,5 @@
+package ekit.com.hexidec.ekit;
+
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.*;
@@ -171,9 +173,9 @@ public class IcsParser {
             for (Iterator j = component.getProperties().iterator(); j.hasNext();) {
                 Property property = (Property) j.next();
                 if (property.getName().equals("DTSTART") )
-                    if (property.getName()=="LOCATION") locations.add(property.getValue());
-                    if (property.getName()=="SUMMARY") classes.add(property.getValue());
-                    if (property.getName()=="DESCRIPTION") groupes_profs.add(property.getValue());
+                    if (property.getName().equals("LOCATION")) locations.add(property.getValue());
+                    if (property.getName().equals("SUMMARY")) classes.add(property.getValue());
+                    if (property.getName().equals("DESCRIPTION")) groupes_profs.add(property.getValue());
             }
         }
     }
@@ -336,7 +338,7 @@ public class IcsParser {
     }
 
     public static void main(String args[]) {
-        IcsParser icsp= new IcsParser("ADECal.ics");
+        IcsParser icsp= new IcsParser("ekit/com/hexidec/ekit/ADECal.ics");
         //icsp.iterateOverCalendar();
         icsp.setWeekComponents();
         //icsp.printWeek();

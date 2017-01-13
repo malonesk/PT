@@ -1,3 +1,5 @@
+package ekit.com.hexidec.ekit;
+
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateRange;
 
@@ -27,17 +29,17 @@ public class EdtDisplayer extends JFrame{
         currentWeek=sem;
         init(sem);
     }
-    public EdtDisplayer() {
+    public EdtDisplayer(String s) {
         super();
         init(null);
     }
     public void init(DateRange dr) {
         if (dr!=null) {
-            icsp = new IcsParser("ADECal.ics",dr);
+            icsp = new IcsParser("ekit/com/hexidec/ekit/ADECal.ics",dr);
             currentWeek=icsp.initDateRangeCal(dr);
         }
         else {
-            icsp = new IcsParser("ADECal.ics");
+            icsp = new IcsParser("ekit/com/hexidec/ekit/ADECal.ics");
             currentWeek=icsp.initDateRangeCal();
         }
 
@@ -57,7 +59,7 @@ public class EdtDisplayer extends JFrame{
         this.setSize(1320,1050);
         this.setLocationRelativeTo(null);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gridEdt=new GridFactory();
         gridEdt.paintComponents(g);
 
@@ -308,7 +310,7 @@ public class EdtDisplayer extends JFrame{
     }
 
     public static void main(String args[]) {
-        EdtDisplayer edtd= new EdtDisplayer();
+        EdtDisplayer edtd= new EdtDisplayer("ADECal.ics");
     }
 
 }
