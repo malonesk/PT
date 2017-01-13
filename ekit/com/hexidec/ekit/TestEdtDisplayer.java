@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by malonesk on 05/01/17.
  */
-public class EdtDisplayer extends JFrame{
+public class TestEdtDisplayer extends JFrame{
     public DateRange currentWeek;
     public Graphics g;
     public Graphics h;
@@ -24,12 +24,12 @@ public class EdtDisplayer extends JFrame{
     public JButton nextW;
     public JButton prevW;
     public EdtDisplayer ed2;
-    public EdtDisplayer(DateRange sem) {
+    public TestEdtDisplayer(DateRange sem) {
         super();
         currentWeek=sem;
         init(sem);
     }
-    public EdtDisplayer(String s) {
+    public TestEdtDisplayer(String s) {
         super();
         init(null);
     }
@@ -45,6 +45,8 @@ public class EdtDisplayer extends JFrame{
         Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         int screenHeight = (int)dimension.getHeight();
         int screenWidth  = (int)dimension.getWidth();
+
+        this.setResizable(true);
 
         listeCours=new ArrayList<>();
         List<Component> lc;
@@ -210,17 +212,17 @@ public class EdtDisplayer extends JFrame{
 
     public void actualise() {
         //nextWeek();
-            this.setVisible(false);
-            this.removeAll();
-            ed2 = new EdtDisplayer(this.currentWeek);
-            ed2.currentWeek=this.currentWeek;
-            //ed2.icsp=new IcsParser("ADECal.ics", ed2.currentWeek);
-            ed2.icsp.initWeekComponent(ed2.currentWeek);
-            List<Component> lc = ed2.icsp.getWeekComponent();
-            ed2.setListeCours(lc);
-            ed2.init(ed2.currentWeek);
-            // ed2.nextWeek();
-            ed2.setVisible(true);
+        this.setVisible(false);
+        this.removeAll();
+        ed2 = new EdtDisplayer(this.currentWeek);
+        ed2.currentWeek=this.currentWeek;
+        //ed2.icsp=new IcsParser("ADECal.ics", ed2.currentWeek);
+        ed2.icsp.initWeekComponent(ed2.currentWeek);
+        List<Component> lc = ed2.icsp.getWeekComponent();
+        ed2.setListeCours(lc);
+        ed2.init(ed2.currentWeek);
+        // ed2.nextWeek();
+        ed2.setVisible(true);
     }
 
     /*
