@@ -17,66 +17,52 @@ class ClientTCP  {
 
     public ClientTCP(String serverIp, int serverPort) throws IOException {
 
-	commReq = new Socket(serverIp, serverPort);
-	oosReq = new ObjectOutputStream(commReq.getOutputStream());
-	oisReq = new ObjectInputStream(commReq.getInputStream()); 
+        commReq = new Socket(serverIp, serverPort);
+        oosReq = new ObjectOutputStream(commReq.getOutputStream());
+        oisReq = new ObjectInputStream(commReq.getInputStream());
 
-	consoleIn = new BufferedReader(new InputStreamReader(System.in));
+        consoleIn = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public void initLoop() throws IOException,ClassNotFoundException {
 
-	String line = null;
-	boolean ok = false;
+        String line = null;
+        boolean ok = false;
 
 
 
-	//requête 1 ici (première connexion)
+        //requête 1 ici (première connexion)
 
-	while (!ok) {
+        while (!ok) {
+            int requete = 4;
+            oosReq.writeInt(requete);
+            oosReq.flush();
+            //ok
+            ok = oisReq.readBoolean();
+        }
 
-		System.out.println("Entre donc ton pseudo : ");
-	    pseudo = consoleIn.readLine();
-		System.out.println("Entre donc ton mdp : ");
-		mdp = consoleIn.readLine();
-
-	    oosReq.writeUTF(pseudo);
-	    oosReq.flush();
-
-		//ok
-	    ok = oisReq.readBoolean();
-	}
-
-	System.out.println("Pseudo accepté !");
+        System.out.println("Pseudo accepté !");
 
     }
 
     public void requestLoop() throws IOException,ClassNotFoundException {
+        Configuration config = new Configuration();
+        String reqLine = null;
+        String[] reqParts = null;
+        boolean stop = false;
+        int nbTurn = 0;
+        String advName = "";
+        while (!stop) {
+            try {
+                oosReq.writeObject(config.getUserName());
+                oosReq.flush();
+                oosReq.writeObject(config.getPassword());
+                oosReq.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            stop=oisReq.readBoolean();
 
-	String reqLine = null;
-	String[] reqParts = null;
-	boolean stop = false;
-	int nbTurn = 0;
-	String advName = "";
-
-	while (!stop) {
-
-	    System.out.print(pseudo + "> ");
-	    reqLine = consoleIn.readLine();
-	    reqParts = reqLine.split(" ");
-
-	    if (reqParts[0].equals("req2")) {
-
-			byte[] infosFichier;
-			//ici uncaught Unknown class Exception je crois d'où l'erreur
-		}
-
-	    else if (reqParts[0].equals("req2"))
-	    {
-
-
-
-	    }
-		}
+        }
     }
 }

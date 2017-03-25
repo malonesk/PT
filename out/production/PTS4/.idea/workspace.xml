@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d3fc551-13dc-4ec0-a794-d11fe140a3ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_collections4_4_1_javadoc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PTS4.iml" afterPath="$PROJECT_DIR$/PTS4.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeDisplayer.java" afterPath="$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeDisplayer.java" />
     </list>
     <ignored path="PTS4.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +28,8 @@
       <file leaf-file-name="TestEkit.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/TestEkit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1096">
-              <caret line="481" column="1" selection-start-line="481" selection-start-column="1" selection-end-line="481" selection-end-column="1" />
+            <state relative-caret-position="451">
+              <caret line="485" column="73" selection-start-line="485" selection-start-column="73" selection-end-line="485" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -39,20 +38,55 @@
       <file leaf-file-name="TravailGroupeDisplayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeDisplayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="631">
-              <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+            <state relative-caret-position="390">
+              <caret line="81" column="40" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EdtDisplayer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EdtDisplayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/EdtDisplayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="135">
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TravailGroupeControler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeControler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/config.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Serveur.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/Serveur.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1490394864561" expanded="true" signature="1287:1312" ph="SELECT * FRO... UTILISATEUR" />
+                <marker date="1490394864561" expanded="true" signature="2399:2470" ph="SELECT * FRO... UTILISATEUR" />
+                <marker date="1490394864561" expanded="true" signature="3342:3664" ph="SELECT UTILI... FICHIER" />
+                <marker date="1490394864561" expanded="true" signature="7045:7084" ph="SELECT * FRO... UTILISATEUR" />
+                <marker date="1490394864561" expanded="true" signature="7215:7297" ph="INSERT INTO UTILISATEUR... " />
+                <marker date="1490394864561" expanded="true" signature="7996:8093" ph="UPDATE UTILI... " />
               </folding>
             </state>
           </provider>
@@ -61,8 +95,8 @@
       <file leaf-file-name="ExplorateurFichiers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/test/ExplorateurFichiers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+            <state relative-caret-position="390">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,8 +105,8 @@
       <file leaf-file-name="FileTreeModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/FileTreeModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+            <state relative-caret-position="180">
+              <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
               <folding>
                 <element signature="e#632#980#0" expanded="true" />
                 <element signature="e#979#980#0" expanded="true" />
@@ -94,9 +128,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ekit/com/hexidec/ekit/TestEkit.java" />
         <option value="$PROJECT_DIR$/ekit/com/hexidec/ekit/test/ExplorateurFichiers.java" />
         <option value="$PROJECT_DIR$/ekit/com/hexidec/ekit/FileTreeModel.java" />
+        <option value="$PROJECT_DIR$/ekit/com/hexidec/ekit/TestEkit.java" />
         <option value="$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeDisplayer.java" />
       </list>
     </option>
@@ -276,12 +310,17 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/v0.10.40/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PTDemo/lib/groovy-all-minimal-1.5.8.jar!/" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Téléchargements/mysql-connector-java-5.1.41" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15917969" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.TestEkit">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ekit/com/hexidec/ekit" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Serveur">
     <configuration default="false" name="TestEkit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -290,6 +329,26 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="ekit.com.hexidec.ekit.TestEkit" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="PTS4" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Serveur" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="ekit.com.hexidec.ekit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="ekit.com.hexidec.ekit.Serveur" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -709,12 +768,14 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.TestEkit" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Serveur" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.TestEkit" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.Serveur" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TestEkit" />
       </list>
     </recent_temporary>
   </component>
@@ -728,12 +789,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1490400605097</updated>
-      <workItem from="1490400607630" duration="605000" />
+      <workItem from="1490400607630" duration="3800000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="605000" />
+    <option name="totallyTimeSpent" value="3800000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1081" extended-state="6" />
@@ -741,13 +802,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -786,18 +847,34 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/test/ExplorateurFichiers.java">
+    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/EdtDisplayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+        <state relative-caret-position="135">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeControler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeDisplayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="81" column="40" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/FileTreeModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+        <state relative-caret-position="180">
+          <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
           <folding>
             <element signature="e#632#980#0" expanded="true" />
             <element signature="e#979#980#0" expanded="true" />
@@ -805,28 +882,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/test/ExplorateurFichiers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/TestEkit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1096">
-          <caret line="481" column="1" selection-start-line="481" selection-start-column="1" selection-end-line="481" selection-end-column="1" />
+        <state relative-caret-position="451">
+          <caret line="485" column="73" selection-start-line="485" selection-start-column="73" selection-end-line="485" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/TravailGroupeDisplayer.java">
+    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/config.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/EdtDisplayer.java">
+    <entry file="file://$PROJECT_DIR$/ekit/com/hexidec/ekit/Serveur.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        <state relative-caret-position="195">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1490394864561" expanded="true" signature="1287:1312" ph="SELECT * FRO... UTILISATEUR" />
+            <marker date="1490394864561" expanded="true" signature="2399:2470" ph="SELECT * FRO... UTILISATEUR" />
+            <marker date="1490394864561" expanded="true" signature="3342:3664" ph="SELECT UTILI... FICHIER" />
+            <marker date="1490394864561" expanded="true" signature="7045:7084" ph="SELECT * FRO... UTILISATEUR" />
+            <marker date="1490394864561" expanded="true" signature="7215:7297" ph="INSERT INTO UTILISATEUR... " />
+            <marker date="1490394864561" expanded="true" signature="7996:8093" ph="UPDATE UTILI... " />
           </folding>
         </state>
       </provider>
@@ -908,7 +998,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>commons-collections4-4.1-javadoc</last-edited>
+          <last-edited>mysql-connector-java-5.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

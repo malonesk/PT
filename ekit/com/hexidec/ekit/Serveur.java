@@ -88,6 +88,7 @@ public class Serveur {
                 ois = new ObjectInputStream(sock.getInputStream());
                 oos = new ObjectOutputStream(sock.getOutputStream());
                 int requete=ois.readInt();
+                System.out.println(requete);
                 String mdp;
                 String pseudo;
                 String surnom;
@@ -194,20 +195,47 @@ public class Serveur {
                         break;
 
                     case 4: //Creation d'un utilisateur
-
+                        oos.writeBoolean(true);
+                        oos.flush();
                         pseudo=(String)ois.readObject();
                         mdp=(String)ois.readObject();
+                        System.out.println(pseudo);
+                        System.out.println(mdp);
                         try {
-                            resultSet = statement.executeQuery("SELECT * FROM UTILISATEUR WHERE pseudo="+pseudo);
+
+                            String sql = "INSERT INTO UTILISATEUR("
+                                    + "id_user,"
+                                    + "prenom,"
+                                    + "nom) "
+                                    +  "VALUES(NULL,?,?)";
+                            System.out.println(sql);
+                            PreparedStatement pstmt = connection.prepareStatement(sql);
+
+                            // Set the values
+                            pstmt.setString(1, pseudo);
+                            pstmt.setString(2, mdp);
+
+                            // Insert
+                            pstmt.executeUpdate();
+                            oos.writeBoolean(true);
+                            oos.flush();
+                        } catch (SQLException e) {
+
+                        }
+                        /*try {
+                            resultSet = statement.executeQuery("SELECT * FROM UTILISATEUR WHERE nom='"+pseudo+"'");
                             if (!resultSet.next() ) {
-                                resultSet=statement.executeQuery("INSERT INTO UTILISATEUR VALUES (NULL,'"+pseudo+"','"+mdp+"', '/serveur/"+pseudo+"'"); //path provisoire
+                                resultSet=statement.executeQuery("INSERT INTO UTILISATEUR VALUES (NULL,'"+pseudo+"','"+mdp+"', '/serveur/"+pseudo+"')"); //path provisoire
                                 oos.writeBoolean(true);
+                                oos.flush();
                             }else{
                                 oos.writeBoolean(false);
+                                oos.flush();
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
+                        */
                         break;
 
                     case 5 : //Update d'un utilisateur

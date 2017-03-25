@@ -12,7 +12,7 @@ class Client {
 
     public static void main(String[] args) {
 
-	int port = 1234;
+	int port = 12345;
 	ClientTCP client = null;
 	try {
 	    client = new ClientTCP("localhost", port);
