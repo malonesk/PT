@@ -73,16 +73,34 @@ public class TravailGroupeDisplayer extends JFrame {
         localToServ.addActionListener(l);
     }
     public void setComponents() {
-        arboLocale.setBounds(insets.left+50, insets.top+50, this.getWidth()/4,500);
+        arboLocale.setBounds(insets.left, insets.top+50, this.getWidth()/4,500);
         arboLocale.setPreferredSize(new Dimension(this.getWidth()/4,500));
         arboLocale.add(explofichLocal);
-        servToLocal.setBounds(insets.left+this.getWidth()/4+this.getWidth()/8, insets.top+50, this.getWidth()/4,500);
-        arboLocale.setPreferredSize(new Dimension(this.getWidth()/4,500));
-        arboLocale.add(explofichServ);
-        panelPartage.setBounds(insets.left+this.getWidth()/2+this.getWidth()/4, insets.top+50, this.getWidth()/4,500);
-        panelPartage.setLayout(new BoxLayout(panelPartage, BoxLayout.Y_AXIS));
-        panelPartage.add(listeNoms);
+        arboServer.setBounds(insets.left+this.getWidth()/4+this.getWidth()/8, insets.top+50, this.getWidth()/4,500);
+        arboServer.setPreferredSize(new Dimension(this.getWidth()/4,500));
+        arboServer.setBackground(Color.WHITE);
+        //arboServer.add(explofichServer);
+        panelListeDeroul.setBounds(insets.left+this.getWidth()/2+this.getWidth()/4, insets.top+50, this.getWidth()/4,500);
+        panelListeDeroul.setLayout(new BoxLayout(panelListeDeroul, BoxLayout.Y_AXIS));
+        panelListeDeroul.add(listeNoms);
+        panelListeDeroul.add(listeFichiersPartages);
 
+        this.add(arboLocale);
+        this.add(arboServer);
+        this.add(panelListeDeroul);
+
+        partager.setPreferredSize(new Dimension(100,50));
+        partager.setBounds(insets.left+this.getWidth()/2, insets.top+this.getHeight()-100, 100,50);
+
+        jtfPartager.setBounds(insets.left+this.getWidth()/2-100, insets.top + this.getHeight()-100,100,50);
+        this.add(partager);
+        this.add(jtfPartager);
+
+        servToLocal.setBounds(insets.left + this.getWidth()/4, insets.top+this.getHeight()/2-100,this.getWidth()/8,60);
+        localToServ.setBounds(insets.left + this.getWidth()/4, insets.top+this.getHeight()/2,this.getWidth()/8,60);
+        this.add(servToLocal);
+        this.add(localToServ);
+        this.setVisible(true);
     }
     public void setExploServ(String nom, String mdp) {
         //traitement client

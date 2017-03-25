@@ -55,7 +55,7 @@ import java.net.URL;
 public class TestEkit extends JFrame implements WindowListener
 {
     protected final JMenu edtMenu;
-    private final JMenu arboMenu, resumeMenu, configMenu, nouveauCompteMenu;
+    private final JMenu arboMenu, resumeMenu, configMenu, nouveauCompteMenu, travailEnLigneMenu;
     public EkitCore ekitCore;
     public ExplorateurFichiers explo;
     public JScrollPane explofich;
@@ -63,7 +63,7 @@ public class TestEkit extends JFrame implements WindowListener
     private JButton refresh;
     private Controller controller;
     public MenuController menuController;
-    public JMenuItem afficher, rafraichArboMenu, genererResume, modifierConfig, creerCompte, lierCompte;
+    public JMenuItem afficher, rafraichArboMenu, genererResume, modifierConfig, creerCompte, lierCompte, connexion;
     public Resume resume;
     public JPanel panearbo;
 
@@ -123,19 +123,23 @@ public class TestEkit extends JFrame implements WindowListener
         genererResume = new JMenuItem("Générer");
         configMenu = new JMenu("Paramètres");
         nouveauCompteMenu = new JMenu("Compte en ligne");
+        travailEnLigneMenu = new JMenu("Online");
 
         this.add(resumeMenu);
         this.add(configMenu);
         this.add(nouveauCompteMenu);
+        this.add(travailEnLigneMenu);
 
         modifierConfig = new JMenuItem("Modifier");
         creerCompte = new JMenuItem("Creer un compte");
         lierCompte = new JMenuItem("Lier un compte");
+        connexion = new JMenuItem("Connexion");
 
         configMenu.add(modifierConfig);
         resumeMenu.add(genererResume);
         nouveauCompteMenu.add(creerCompte);
         nouveauCompteMenu.add(lierCompte);
+        travailEnLigneMenu.add(connexion);
 
         bar.add(ekitMenu);
         bar.add(edtMenu);
@@ -143,6 +147,7 @@ public class TestEkit extends JFrame implements WindowListener
         bar.add(resumeMenu);
         bar.add(configMenu);
         bar.add(nouveauCompteMenu);
+        bar.add(travailEnLigneMenu);
 
         resume = new Resume();
         resume.parse(ekitCore.getExtendedHtmlDoc());
@@ -234,6 +239,7 @@ public class TestEkit extends JFrame implements WindowListener
                 fnAddActionListener(resumeMenu);
                 fnAddActionListener(configMenu);
                 fnAddActionListener(nouveauCompteMenu);
+                fnAddActionListener(travailEnLigneMenu);
 
 
                 //this.getContentPane().add(refresh,gbc);
@@ -475,6 +481,9 @@ public class TestEkit extends JFrame implements WindowListener
         }
         else if (e.getSource().equals(lierCompte)) {
             LierCompteDisplayer liercdisp = new LierCompteDisplayer();
+        }
+        else if (e.getSource().equals(connexion)) {
+            TravailGroupeDisplayer tgdisp = new TravailGroupeDisplayer();
         }
     }
 
