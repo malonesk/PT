@@ -81,7 +81,7 @@ public class TravailGroupeDisplayer extends JFrame {
         arboLocale.add(explofichServ);
         panelPartage.setBounds(insets.left+this.getWidth()/2+this.getWidth()/4, insets.top+50, this.getWidth()/4,500);
         panelPartage.setLayout(new BoxLayout(panelPartage, BoxLayout.Y_AXIS));
-        panelPartage.add(listeNoms)
+        panelPartage.add(listeNoms);
 
     }
     public void setExploServ(String nom, String mdp) {
