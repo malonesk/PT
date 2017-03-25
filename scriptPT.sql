@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS UTILISATEUR;
 
 CREATE TABLE UTILISATEUR (
 	id_user int AUTO_INCREMENT PRIMARY KEY,
-	prenom varchar(20),
-	nom varchar(20),
+	pseudo varchar(20),
+	surnom varchar(20),
 	racine_rep text
 );
 
