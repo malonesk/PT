@@ -26,7 +26,11 @@ import com.hexidec.ekit.EkitCoreSpell;
 import ekit.com.hexidec.ekit.test.ExplorateurFichiers;
 import ekit.com.hexidec.ekit.test.Resume;
 
+import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +55,7 @@ import java.net.URL;
 public class TestEkit extends JFrame implements WindowListener
 {
     protected final JMenu edtMenu;
-    private final JMenu arboMenu, resumeMenu;
+    private final JMenu arboMenu, resumeMenu, configMenu, nouveauCompteMenu;
     public EkitCore ekitCore;
     public ExplorateurFichiers explo;
     public JScrollPane explofich;
@@ -59,8 +63,9 @@ public class TestEkit extends JFrame implements WindowListener
     private JButton refresh;
     private Controller controller;
     public MenuController menuController;
-    public JMenuItem afficher, rafraichArboMenu, genererResume;
+    public JMenuItem afficher, rafraichArboMenu, genererResume, modifierConfig, creerCompte, lierCompte;
     public Resume resume;
+    public JPanel panearbo;
 
     /** Master Constructor
      * @param sDocument         [String]  A text or HTML document to load in the editor upon startup.
@@ -89,7 +94,12 @@ public class TestEkit extends JFrame implements WindowListener
         {
             ekitCore = new EkitCore(false, sDocument, sStyleSheet, sRawDocument, null, urlStyleSheet, includeToolBar, showViewSource, showMenuIcons, editModeExclusive, sLanguage, sCountry, base64, debugMode, false, multiBar, (multiBar ? EkitCore.TOOLBAR_DEFAULT_MULTI : EkitCore.TOOLBAR_DEFAULT_SINGLE), enterBreak);
         }
-        explo=new ExplorateurFichiers("/home/malonesk",ekitCore);
+        Configuration config = new Configuration();
+        try {
+            explo=new ExplorateurFichiers(config.getConfig("online.root"),ekitCore);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         explofich=explo.getExplorateur();
         controller=new Controller(this);
 
@@ -111,13 +121,28 @@ public class TestEkit extends JFrame implements WindowListener
 
         resumeMenu = new JMenu("Resumé");
         genererResume = new JMenuItem("Générer");
+        configMenu = new JMenu("Paramètres");
+        nouveauCompteMenu = new JMenu("Compte en ligne");
+
         this.add(resumeMenu);
+        this.add(configMenu);
+        this.add(nouveauCompteMenu);
+
+        modifierConfig = new JMenuItem("Modifier");
+        creerCompte = new JMenuItem("Creer un compte");
+        lierCompte = new JMenuItem("Lier un compte");
+
+        configMenu.add(modifierConfig);
         resumeMenu.add(genererResume);
+        nouveauCompteMenu.add(creerCompte);
+        nouveauCompteMenu.add(lierCompte);
 
         bar.add(ekitMenu);
         bar.add(edtMenu);
         bar.add(arboMenu);
         bar.add(resumeMenu);
+        bar.add(configMenu);
+        bar.add(nouveauCompteMenu);
 
         resume = new Resume();
         resume.parse(ekitCore.getExtendedHtmlDoc());
@@ -127,7 +152,7 @@ public class TestEkit extends JFrame implements WindowListener
 
         this.add(bar);
         JPanel paneEkit=new JPanel();
-        JPanel panearbo=new JPanel();
+        panearbo=new JPanel();
         JPanel paneResume=new JPanel();
 
 		/* Add the components to the app */
@@ -204,8 +229,11 @@ public class TestEkit extends JFrame implements WindowListener
 
 
                 setActionListener(controller);
+                fnAddActionListener(arboMenu);
                 fnAddActionListener(edtMenu);
                 fnAddActionListener(resumeMenu);
+                fnAddActionListener(configMenu);
+                fnAddActionListener(nouveauCompteMenu);
 
 
                 //this.getContentPane().add(refresh,gbc);
@@ -259,6 +287,7 @@ public class TestEkit extends JFrame implements WindowListener
         this.updateTitle();
         this.pack();
         this.setVisible(true);
+
     }
     public void setActionListener(ActionListener listener){
         refresh.addActionListener(listener);
@@ -321,6 +350,7 @@ public class TestEkit extends JFrame implements WindowListener
         System.out.println("         ");
         System.out.println("For further information, read the README file.");
     }
+
 
     /** Main method
      */
@@ -421,8 +451,30 @@ public class TestEkit extends JFrame implements WindowListener
             }
         }
         else if (e.getSource().equals(rafraichArboMenu)) {
-            explofich=new ExplorateurFichiers("/home/malonesk",ekitCore).getExplorateur();
+            Configuration config = new Configuration();
+            try {
+                System.out.println(config.getConfig("online.root"));
+                explo=new ExplorateurFichiers(config.getConfig("online.root"),ekitCore);
+                explo.getTree().updateUI();
+                explofich = new JScrollPane(explo.getExplorateur());
+                explo.getTree().revalidate();
+                panearbo.revalidate();
+                SwingUtilities.updateComponentTreeUI(panearbo);
+
+
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             SwingUtilities.updateComponentTreeUI(this);
+        }
+        else if (e.getSource().equals(modifierConfig)) {
+            ConfigDisplayer cfdisp = new ConfigDisplayer();
+        }
+        else if (e.getSource().equals(creerCompte)) {
+            NouveauCompteDisplayer newcomptedisp = new NouveauCompteDisplayer();
+        }
+        else if (e.getSource().equals(lierCompte)) {
+            LierCompteDisplayer liercdisp = new LierCompteDisplayer();
         }
     }
 

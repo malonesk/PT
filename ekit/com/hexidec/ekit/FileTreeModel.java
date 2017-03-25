@@ -1,9 +1,10 @@
-package ekit.com.hexidec.ekit.test;
+package ekit.com.hexidec.ekit;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by Antonin on 04/01/2017.
  */
-public class FileTreeModel implements TreeModel {
+public class FileTreeModel implements TreeModel, Serializable {
     private File root;
     public FileTreeModel(File file){
         root = file;

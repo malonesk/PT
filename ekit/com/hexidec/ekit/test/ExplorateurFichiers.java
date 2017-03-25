@@ -1,6 +1,7 @@
 package ekit.com.hexidec.ekit.test;
 
 import com.hexidec.ekit.EkitCore;
+import ekit.com.hexidec.ekit.FileTreeModel;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -23,11 +24,11 @@ public class ExplorateurFichiers extends JPanel implements TreeSelectionListener
     private EkitCore ekit;
     //private JTextArea infos;
     public ExplorateurFichiers(String repertoire,EkitCore ekit){
-        this.ekit=ekit;
+        if (ekit!=null) this.ekit=ekit;
+        else ekit = null;
         root = new File(repertoire);
         modele = new FileTreeModel(root);
         tree = new JTree(modele);
-
     }
     public JScrollPane getExplorateur(){
         tree.setCellRenderer(new FileRenderer());
@@ -41,7 +42,7 @@ public class ExplorateurFichiers extends JPanel implements TreeSelectionListener
         return selection;
     }
     public void valueChanged(TreeSelectionEvent e){
-        
+
         TreePath path = e.getPath();
         File file = (File)path.getLastPathComponent();
         selection=file;
@@ -55,6 +56,9 @@ public class ExplorateurFichiers extends JPanel implements TreeSelectionListener
         }
 
 
+    }
+    public JTree getTree() {
+        return tree;
     }
 
 }
