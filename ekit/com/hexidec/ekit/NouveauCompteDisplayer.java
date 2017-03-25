@@ -9,13 +9,14 @@ import java.awt.event.ActionListener;
  * Created by malonesk on 24/03/17.
  */
 public class NouveauCompteDisplayer extends JFrame {
-    public Client client;
     public JLabel jlTitreCreer, jlNomUtilis, jlPassword;
     public JTextField jtfNom, jtfPassword;
     public JButton creer;
+    public Client client;
     public NouveauCompteDisplayer() {
         super();
         // TO DO : instanciation client
+        client = new Client(4);
         init();
 
     }
@@ -54,7 +55,14 @@ public class NouveauCompteDisplayer extends JFrame {
         creer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (((((JButton)e.getSource()).getText()).equals("save"))) {
+                if (((((JButton)e.getSource()).getText()).equals("Creer un compte"))) {
+                    Configuration config = new Configuration();
+                    try {
+                        config.setConfig("new_account.user", jtfNom.getText());
+                        config.setConfig("new_account.password", jtfPassword.getText());
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                     creerCompte();
                 }
             }
@@ -65,6 +73,7 @@ public class NouveauCompteDisplayer extends JFrame {
 
     private void creerCompte() {
         // Appel de la methode client de creation d'un nouveau compte sur le serveur
+        client.start();
 
         // client.creerUnNouveauCompte(jtfNom.getText(),jtfPassword.getText());
     }
